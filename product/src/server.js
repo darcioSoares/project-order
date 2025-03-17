@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const prodRouter = require("./routes/productRoutes");
 
 const Redis = require("ioredis");
 
@@ -20,6 +21,7 @@ app.use(express.json());
 
 app.get("/", (_, res) => res.send("API Rodando  darcio"));
 
+app.use("/products", prodRouter);
 
 
 initializeDatabase()
