@@ -15,11 +15,11 @@ const redis = new Redis({
   port: Number(process.env.REDIS_PORT),
 });
 
-redis.on("connect", () => console.log("🔥 Redis conectado!"));
+redis.on("connect", () => console.log("Redis conectado!"));
 
 app.use(express.json());
 
-app.get("/", (_, res) => res.send("API Rodando  darcio"));
+app.get("/", (_, res) => res.send("API Rodando - Produto"));
 
 app.use("/products", prodRouter);
 
