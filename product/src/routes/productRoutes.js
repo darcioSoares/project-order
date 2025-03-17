@@ -10,5 +10,7 @@ router.put('/:id', productController.updateProduct);
 router.delete('/:id', productController.deleteProduct);
 
 router.get('/totals/:name', productController.totalsProducts);
+router.get('/totals', productController.productsSumStock);
+
 
 module.exports = router;

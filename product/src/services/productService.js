@@ -22,7 +22,11 @@ const deleteProduct = async (id) => {
 };
 
 const totailProduct = async (name) => {
-  return await productRepository.findByNameAndSum(name);
+  return await productRepository.totailProductSum(name);
+};
+
+const productsSumStock = async () => {
+  return await productRepository.productsSumStock();
 };
 
 module.exports = {
@@ -31,5 +35,6 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct,
-  totailProduct
+  totailProduct,
+  productsSumStock
 };

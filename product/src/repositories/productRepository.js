@@ -42,7 +42,7 @@ const remove = async (id) => {
   return false;
 };
 
-const findByNameAndSum = async (name) => {
+const totailProductSum = async (name) => {
   const productRepository = getProductRepository();
   
   const result = await productRepository.createQueryBuilder("product")
@@ -55,17 +55,17 @@ const findByNameAndSum = async (name) => {
   return result;
 };
 
-// const findByNameAndSumStock = async () => {
-//   const productRepository = getProductRepository();
+const productsSumStock = async () => {
+  const productRepository = getProductRepository();
   
-//   const result = await productRepository.createQueryBuilder("product")
-//     .select("product.name")
-//     .addSelect("SUM(product.stock)", "total_stock")
-//     .groupBy("product.name")
-//     .getRawMany();
+  const result = await productRepository.createQueryBuilder("product")
+    .select("product.name")
+    .addSelect("SUM(product.stock)", "total_stock")
+    .groupBy("product.name")
+    .getRawMany();
 
-//   return result;
-// };
+  return result;
+};
 
 
 module.exports = {
@@ -74,5 +74,6 @@ module.exports = {
   create,
   update,
   remove,
-  findByNameAndSum,
+  totailProductSum,
+  productsSumStock,
 };
