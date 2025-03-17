@@ -67,6 +67,17 @@ const productsSumStock = async () => {
   return result;
 };
 
+const productsSold= async () => {
+  const productRepository = getProductRepository();
+  
+  const result = await productRepository.createQueryBuilder("product")
+  .select(["product.id", "product.name", "product.category", "product.price", "product.stock"])
+  .where("product.stock < 0") 
+  .getMany();
+
+    return result;
+};
+
 
 module.exports = {
   findAll,
@@ -76,4 +87,5 @@ module.exports = {
   remove,
   totailProductSum,
   productsSumStock,
+  productsSold
 };

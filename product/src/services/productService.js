@@ -29,6 +29,10 @@ const productsSumStock = async () => {
   return await productRepository.productsSumStock();
 };
 
+const productsSold = async () => {
+  return await productRepository.productsSold();
+};
+
 module.exports = {
   getProducts,
   getProductById,
@@ -36,5 +40,6 @@ module.exports = {
   updateProduct,
   deleteProduct,
   totailProduct,
-  productsSumStock
+  productsSumStock,
+  productsSold
 };

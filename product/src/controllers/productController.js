@@ -87,6 +87,17 @@ const productsSumStock = async (req, res) => {
   }
 };
 
+const productsSold = async (req, res) => {
+  try {
+   
+    const result = await productService.productsSold();
+
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro ao buscar produtos', error });
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
@@ -94,5 +105,6 @@ module.exports = {
   updateProduct,
   deleteProduct,
   totalsProducts,
-  productsSumStock
+  productsSumStock,
+  productsSold
 };
