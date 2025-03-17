@@ -42,10 +42,38 @@ const remove = async (id) => {
   return false;
 };
 
+const findByNameAndSum = async (name) => {
+  const productRepository = getProductRepository();
+  
+  const result = await productRepository.createQueryBuilder("product")
+    .select("product.name")
+    .addSelect("SUM(product.price)", "total_price")
+    .addSelect("SUM(product.stock)", "total_stock")
+    .where("LOWER(product.name) = LOWER(:name)", { name })
+    .groupBy("product.name")
+    .getRawOne();
+
+  return result;
+};
+
+// const findByNameAndSumStock = async () => {
+//   const productRepository = getProductRepository();
+  
+//   const result = await productRepository.createQueryBuilder("product")
+//     .select("product.name")
+//     .addSelect("SUM(product.stock)", "total_stock")
+//     .groupBy("product.name")
+//     .getRawMany();
+
+//   return result;
+// };
+
+
 module.exports = {
   findAll,
   findById,
   create,
   update,
   remove,
+  findByNameAndSum,
 };

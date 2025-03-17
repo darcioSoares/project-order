@@ -26,8 +26,8 @@ const getProductById = async (req, res) => {
 
 const createProduct = async (req, res) => {
   try {
-    const { name, price, stock } = req.body;
-    const newProduct = await productService.createProduct({ name, price, stock });
+    const { name,category, price, stock } = req.body;
+    const newProduct = await productService.createProduct({ name, category, price, stock });
     
     return res.status(201).json(newProduct);
   } catch (error) {
@@ -65,10 +65,22 @@ const deleteProduct = async (req, res) => {
   }
 };
 
+const totalsProducts = async (req, res) => {
+  try {
+    const { name } = req.params;
+    const result = await productService.totailProduct(name);
+
+    return res.status(200).json(result);
+  } catch (error) {
+    return res.status(500).json({ message: 'Erro ao buscar produtos', error });
+  }
+};
+
 module.exports = {
   getProducts,
   getProductById,
   createProduct,
   updateProduct,
   deleteProduct,
+  totalsProducts,
 };

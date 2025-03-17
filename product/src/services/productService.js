@@ -9,6 +9,7 @@ const getProductById = async (id) => {
 };
 
 const createProduct = async (data) => {
+  data.name = data.name.toLowerCase();
   return await productRepository.create(data);
 };
 
@@ -20,10 +21,15 @@ const deleteProduct = async (id) => {
   return await productRepository.remove(id);
 };
 
+const totailProduct = async (name) => {
+  return await productRepository.findByNameAndSum(name);
+};
+
 module.exports = {
   getProducts,
   getProductById,
   createProduct,
   updateProduct,
   deleteProduct,
+  totailProduct
 };
