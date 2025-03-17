@@ -1,4 +1,3 @@
-
 services:
   api:
     build: ./product
@@ -6,8 +5,8 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./product:/app  # Mapeia a pasta product para /app dentro do contêiner
-      - /app/node_modules  # Evita conflito entre os módulos locais e os do container
+      - ./product:/app  
+      - /app/node_modules 
     command: ["npm", "run", "dev"]
     environment:
       - NODE_ENV=development
@@ -35,5 +34,19 @@ services:
     ports:
       - "6379:6379"
 
+  # rabbitmq:
+  #   image: rabbitmq:management
+  #   container_name: app-rabbitmq
+  #   restart: always
+  #   environment:
+  #     RABBITMQ_DEFAULT_USER: user
+  #     RABBITMQ_DEFAULT_PASS: password
+  #   ports:
+  #     - "5672:5672"  
+  #     - "15672:15672"  
+  #   volumes:
+  #     - rabbitmq_data:/var/lib/rabbitmq
+
 volumes:
   app_pgdata:
+  # rabbitmq_data:
