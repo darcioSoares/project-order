@@ -23,3 +23,6 @@ npm run typeorm migration:revert -- -d ./src/database/data-source.js // reverte 
 npm run typeorm migration:show -- -d ./src/database/data-source.ts
 
 chmod -R 777 /app/src/database/migrations
+
+
+microsserviço CRUD de produtos com controle de estoque simples
