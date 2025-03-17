@@ -46,11 +46,10 @@ const findByNameAndSum = async (name) => {
   const productRepository = getProductRepository();
   
   const result = await productRepository.createQueryBuilder("product")
-    .select("product.name")
-    .addSelect("SUM(product.price)", "total_price")
-    .addSelect("SUM(product.stock)", "total_stock")
+    .select("product.name", "Produto") 
+    .addSelect("SUM(product.stock)", "Total")    
     .where("LOWER(product.name) = LOWER(:name)", { name })
-    .groupBy("product.name")
+    .groupBy("product.name") 
     .getRawOne();
 
   return result;
