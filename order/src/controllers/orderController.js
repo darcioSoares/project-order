@@ -13,6 +13,8 @@ const getShippingEstimate = async (req, res) => {
   try {
     const { zipcode } = req.params;
 
+    if (!zipcode ) return res.status(400).json({ message: 'Falta CEP para consulta' });
+
     const estimate = await orderService.shippingEstimate(zipcode);
     return res.status(200).json(estimate);
   } catch (error) {
@@ -22,13 +24,15 @@ const getShippingEstimate = async (req, res) => {
 
 const getOrder = async (req, res) => {
   try {
-    const estimate = await orderService.makeOrder('sofa',1);
+    const { product, amount } = req.body;
+    if (!product || !amount ) return res.status(400).json({ message: 'Falta de dados para o criar pedidos' });
+
+    const estimate = await orderService.makeOrder(product, amount);
     return res.status(200).json(estimate);
   } catch (error) {
     return res.status(500).json({ message: 'Erro ao buscar produtos', error });
   }
 };
-
 
 module.exports = {
     getProducts,

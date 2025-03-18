@@ -12,6 +12,28 @@ const getProducts = async () => {
   }
 };
 
+const makeOrder = async (product, amount) => {
+  try {
+    
+    product = product.trim(); 
+    const protocols = Math.floor(10000 + Math.random() * 90000);
+
+    const data = {product, amount, protocols}
+
+    console.log("Enviando pedido para a fila:", data);
+    await rabbitmqService.sendProductToQueue(data);
+    
+    return { success: true,
+       message: "Pedido enviado com sucesso! Recebera um email com a confirmação do Pedidos",
+       protocols : protocols 
+      };
+
+  } catch (error) {
+    console.error("Erro ao processar pedido:", error.message);
+    return { success: false, message: "Erro ao processar pedido." };
+  }
+};
+
 const shippingEstimate = async (zipCode) => {
 
   //cep 01153 000 ---- CT em são Paulo (origem)
@@ -45,6 +67,7 @@ const shippingEstimate = async (zipCode) => {
       distanciaKm: distancia.toFixed(2), 
       valorFrete: valorFrete.toFixed(2), 
       prazoEntrega: `${prazoEntrega} dias`,
+      centroDistribuicao: "São Paulo - SP",
       descricao: "A cada 10km adciona 1 dia no prazo de entrega, valor do frete R$5 + R$1 por km",
       transportadora: "Transportadora X"
     };
@@ -55,24 +78,6 @@ const shippingEstimate = async (zipCode) => {
   }
 }
 
-const makeOrder = async (product, amount) => {
-  try {
-    if (!product || !amount) {
-      throw new Error("Produto inválido ou ausente.");
-    }
-
-    const data = {product, amount}
-
-    console.log("Enviando pedido para a fila:", data);
-    await rabbitmqService.sendProductToQueue(data);
-    
-    return { success: true, message: "Pedido enviado para a fila com sucesso! Recebera um email com a confirmação do Pedidos" };
-
-  } catch (error) {
-    console.error("Erro ao processar pedido:", error.message);
-    return { success: false, message: "Erro ao processar pedido." };
-  }
-};
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const R = 6371;

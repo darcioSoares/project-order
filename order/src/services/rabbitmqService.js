@@ -8,7 +8,6 @@ export const sendProductToQueue = async (product) => {
     const connection = await amqplib.connect(RABBITMQ_URL);
     const channel = await connection.createChannel();
 
-
     await channel.assertQueue(QUEUE_NAME, { durable: true });
 
     const message = JSON.stringify(product);
