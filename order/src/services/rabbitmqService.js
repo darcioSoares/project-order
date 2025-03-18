@@ -1,9 +1,9 @@
-import amqplib from "amqplib";
+const amqplib = require("amqplib");
 
 const RABBITMQ_URL = 'amqp://user:password@rabbitmq:5672'; 
 const QUEUE_NAME = 'order_queue';
 
-export const sendProductToQueue = async (product) => {
+const sendProductToQueue = async (product) => {
   try {
     const connection = await amqplib.connect(RABBITMQ_URL);
     const channel = await connection.createChannel();
@@ -22,4 +22,7 @@ export const sendProductToQueue = async (product) => {
   } catch (error) {
     console.error("Erro ao enviar mensagem para RabbitMQ:", error);
   }
+};
+module.exports = {
+  sendProductToQueue
 };
