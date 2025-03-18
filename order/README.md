@@ -25,7 +25,7 @@ Esta é a estrutura do Projeto.
 ## Informaçoes importantes para aplicação
 - docker logs -f api-order (logs backend) 
 - docker exec -it api-order bash (entrar no bash) Para consegui visualizar o consumo da fila
-- npm test (teste) OBS Primeiro entre no bash docker exec -it api-order sh depois execulte o comando
+- npm test (teste) OBS Primeiro entre no bash docker exec -it api-order bash depois execulte o comando
 
 # Observação
 - Api pedidos, não a interação com DB, consumimos api produtos, para listar produtos por isso não há repositories nem entities.

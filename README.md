@@ -98,8 +98,8 @@ usando esse comando docker logs -f app_backend, ira aparecer os jobs. Esta simul
 
 1. Clone o repositório:
 
-git clone https://github.com/darcioSoares/xyz
-cd app
+git clone [darcioSoares/project-order](https://github.com/darcioSoares/project-order)
+cd project-order
 
 
 ## 2. Suba os containers com Docker: (Executar dentro da Raiz do projeto)
