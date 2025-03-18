@@ -2,6 +2,7 @@
   "name": "order",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "dev": "nodemon src/server.js",

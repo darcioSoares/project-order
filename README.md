@@ -19,20 +19,20 @@ O projeto consiste em duas APIs que trabalham em conjunto para gerenciar produto
 
 - ✅ Atualmente, o sistema utiliza o RabbitMQ para coordenar a comunicação entre os microserviços de Pedidos e Produtos, garantindo um fluxo de processamento assíncrono e escalável.
 
-🛒 API de Produtos
-A API de Produtos oferece um CRUD completo para gerenciamento de produtos, permitindo:
+- 🛒 API de Produtos
+- A API de Produtos oferece um CRUD completo para gerenciamento de produtos, permitindo:
 - ✅ Criar, listar, atualizar e excluir produtos.
 - ✅ Consultar produtos individualmente por identificador.
 - ✅ Unifica e tras todos os produtos copilados, com totais por produto.
 - ✅ Consultar todas as saidas ( vendas )
 
 - 📦 API de Pedidos
-A API de Pedidos fornece funcionalidades relacionadas à logística e ao processamento de pedidos, incluindo:
+- A API de Pedidos fornece funcionalidades relacionadas à logística e ao processamento de pedidos, incluindo:
 - ✅ Consulta de frete por CEP, retornando o valor do envio, o prazo estimado (em dias) e a distância em quilômetros a partir de São Paulo.
 - ✅ Integração com a API de Produtos para visualizar os itens disponíveis antes de efetuar um pedido.
 - ✅ Pedidos, garantindo uma experiência fluida para o usuário.
 
-🔗 Integração entre APIs:
+- 🔗 Integração entre APIs:
 A API de Produtos e a API de Pedidos trabalham juntas para permitir que os usuários consultem os produtos disponíveis, verifiquem as condições de entrega e realizem pedidos com base nos valores e prazos calculados. 🚀
 
 
@@ -49,7 +49,7 @@ A utilização do RabbitMQ aproxima o projeto de um cenário real de microservi�
 - 🔹 Resiliência → Se a API de Produtos estiver temporariamente indisponível, os pedidos ainda serão armazenados na fila até serem processados.
 - 🔹 Melhor Gerenciamento de Carga → Permite processar pedidos de forma controlada, evitando picos repentinos de requisições.
 
-Com essa abordagem, o sistema se torna mais modular, robusto e preparado para um ambiente distribuído, seguindo as melhores práticas para microserviços. 🚀
+- Com essa abordagem, o sistema se torna mais modular, robusto e preparado para um ambiente distribuído, seguindo as melhores práticas para microserviços. 🚀
 
 --------------------------------------------------------------------------------
 # Tecnologias Utilizadas
@@ -68,7 +68,7 @@ Com essa abordagem, o sistema se torna mais modular, robusto e preparado para um
 
 ## Dentro do README de cada api, tem uma documentação da api e uma introdução de sua estrutura 
 
-#1. Clone o repositório:
+## 1. Clone o repositório:
 
 git clone [https://github.com/darcioSoares/project-order](https://github.com/darcioSoares/project-order)
 cd project-order
@@ -76,7 +76,7 @@ cd project-order
 
 ## 2. Suba os containers com Docker: (Executar dentro da Raiz do projeto)
 
-Dentro da pasta do app, use o comando:
+- Dentro da pasta do app, use o comando:
 
 - docker compose build  ou docker compose build '--no-cache' (criar as imagens)
 - docker compose up -d (subir os containers)
@@ -84,22 +84,26 @@ Dentro da pasta do app, use o comando:
 
 Este comando irá subir os containers necessários para a aplicação.
 
-### 3. Rodar npm install e gerando migrations
+### 3. Rodar - npm install, test e gerando migrations Project
  API Product
 
 - Entrar em no terminal de product
 - docker exec -it api bash 
 - npm install 
 - npm run typeorm migration:run -- -d ./src/database/data-source.js
+- npm test
 
+#### 3. Rodar - npm install e test
 
 - Entrar em no terminal de order
 - docker exec -it api-order bash 
 - npm install 
+- npm test
 
-
+--------------------------------------------------------------------------------
 - (OBSERVAÇÃO - DEIXAR O LOGS DO order ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
 - docker logs api-order -f (vai deixar o log aberto)
+--------------------------------------------------------------------------------
 
 ## Comandos para aplicação
 ### Para entrar no bash da app e rodar os teste
