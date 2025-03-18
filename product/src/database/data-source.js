@@ -8,8 +8,8 @@ const AppDataSource = new DataSource({
   username: "user",
   password: "password",
   database: "mydb",
-  synchronize: true,
-  logging: true,
+  synchronize: false,
+  logging: false,
   entities: [Product],
 });
 

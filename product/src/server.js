@@ -1,21 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const prodRouter = require("./routes/productRoutes");
+const consumeMessages = require("./services/rabbitmqConsumerService"); // Importando corretamente
 
-const Redis = require("ioredis");
+
+consumeMessages(); 
 
 const { initializeDatabase } = require("./database/data-source");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-
-const redis = new Redis({
-  host: process.env.REDIS_HOST,
-  port: Number(process.env.REDIS_PORT),
-});
-
-redis.on("connect", () => console.log("Redis conectado!"));
 
 app.use(express.json());
 

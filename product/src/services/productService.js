@@ -22,6 +22,7 @@ const deleteProduct = async (id) => {
 };
 
 const totailProduct = async (name) => {
+  name = name.toLowerCase().trim()
   return await productRepository.totailProductSum(name);
 };
 
