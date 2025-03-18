@@ -28,6 +28,8 @@ Esta é a estrutura do Projeto.
 - npm test (teste) OBS Primeiro entre no bash docker exec -it api-order sh depois execulte o comando
 
 # Observação
+- Api pedidos, não a interação com DB, consumimos api produtos, para listar produtos por isso não há repositories nem entities.
+
 - docker exec -it api-order bash (entrar no bash) Para consegui visualizar o consumo da fila e as msg
 um passo alem, seria enviar por email, imformaçoes sobre o produto para o cliente. Mas só estou logando no temrinal.
 --------------------------------------------------------------------------------
@@ -66,7 +68,7 @@ exemplo: localhost:3005/orders/order
 #### Request Body
 ```json
 {
-  "product" : "Pc", - nome do produto 
+  "product" : "Pc", - nome do produto (case sensitive)
   "amount" : 2      - quantidade do pedido
 }
 ```
