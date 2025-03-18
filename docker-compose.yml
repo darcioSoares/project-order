@@ -48,19 +48,19 @@ services:
     ports:
       - "6379:6379"
 
-  # rabbitmq:
-  #   image: rabbitmq:management
-  #   container_name: app-rabbitmq
-  #   restart: always
-  #   environment:
-  #     RABBITMQ_DEFAULT_USER: user
-  #     RABBITMQ_DEFAULT_PASS: password
-  #   ports:
-  #     - "5672:5672"  
-  #     - "15672:15672"  
-  #   volumes:
-  #     - rabbitmq_data:/var/lib/rabbitmq
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: app-rabbitmq
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: user
+      RABBITMQ_DEFAULT_PASS: password
+    ports:
+      - "5672:5672"  
+      - "15672:15672"  
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
 
 volumes:
   app_pgdata:
-  # rabbitmq_data:
+  rabbitmq_data:
