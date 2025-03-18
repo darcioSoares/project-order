@@ -6,6 +6,6 @@ const orderController = require('../controllers/orderController');
 
 router.get('/products', orderController.getProducts);
 router.get('/estimate/:zipcode', orderController.getShippingEstimate);
-router.get('/order', orderController.getOrder);
+router.post('/order', orderController.getOrder);
 
 module.exports = router;
