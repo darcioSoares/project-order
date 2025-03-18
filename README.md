@@ -17,7 +17,7 @@ Dessa forma, os controladores ficam mais enxutos e focados na comunicação entr
 - 📝 Descrição do Projeto
 O projeto consiste em duas APIs que trabalham em conjunto para gerenciar produtos e pedidos de forma eficiente.
 
-✅ Atualmente, o sistema utiliza o RabbitMQ para coordenar a comunicação entre os microserviços de Pedidos e Produtos, garantindo um fluxo de processamento assíncrono e escalável.
+- ✅ Atualmente, o sistema utiliza o RabbitMQ para coordenar a comunicação entre os microserviços de Pedidos e Produtos, garantindo um fluxo de processamento assíncrono e escalável.
 
 🛒 API de Produtos
 A API de Produtos oferece um CRUD completo para gerenciamento de produtos, permitindo:
@@ -51,36 +51,6 @@ A utilização do RabbitMQ aproxima o projeto de um cenário real de microservi�
 
 Com essa abordagem, o sistema se torna mais modular, robusto e preparado para um ambiente distribuído, seguindo as melhores práticas para microserviços. 🚀
 
-## Criação de Jornadas
-Ao criar uma jornada, é necessário fornecer:
-- Atividade – Exemplo: "Reunião com diretores"
-- Descrição – Exemplo: "Apresentar MVP do projeto"
-- Data de execução – Define quando a jornada será processada automaticamente
-
-- O sistema permite o agendamento de múltiplas jornadas para diferentes colaboradores, garantindo que cada um tenha suas atividades bem organizadas.
-
--⏳ Execução Automática via Job Scheduler
-No backend, há um job recorrente que roda a cada 3 minutos (configuração ajustável para horas em produção). Esse job verifica no banco de dados se há jornadas programadas para o dia atual.
-
-- 1️⃣ Se houver jornadas pendentes, elas são adicionadas à fila de processamento (usando BullJS e Redis).
-- 2️⃣ Assim que executadas, a jornada é marcada como concluída no banco de dados, preenchendo o campo completedAt com a data e hora da execução.
-- 3️⃣ Jornadas com completedAt: null ainda não foram executadas
-
-- Com esse fluxo, o sistema garante que as jornadas sejam processadas automaticamente, sem necessidade de intervenção manual, permitindo um gerenciamento eficiente das atividades dos colaboradores.
-
---------------------------------------------------------------------------------
-# Observação 
-
-- Dentro de Backend e Frontend tem README de cada um, falando em detalhes o funcionamento.
-
-- Ao subir o docker compose, sobe todas as dependencias, redis, mongodb banckend e frontend.
-
-- Já adicionei no docker-compose o comando para subir os jobs tambem, iniciando junto com o backend.
-
-- Tem um Painel do bull Dashbord para acompanhar. 
-
-- No caso, o processamento das filas, estão só sendo logadas no terminal, se estiver com o terminal aberto 
-usando esse comando docker logs -f app_backend, ira aparecer os jobs. Esta simulando um envio de email. 
 --------------------------------------------------------------------------------
 # Tecnologias Utilizadas
 - node.js
@@ -100,7 +70,7 @@ usando esse comando docker logs -f app_backend, ira aparecer os jobs. Esta simul
 
 #1. Clone o repositório:
 
-git clone [darcioSoares/project-order](https://github.com/darcioSoares/project-order)
+git clone [https://github.com/darcioSoares/project-order](https://github.com/darcioSoares/project-order)
 cd project-order
 
 
