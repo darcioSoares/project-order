@@ -11,7 +11,9 @@ const getProducts = async (req, res) => {
 
 const getShippingEstimate = async (req, res) => {
   try {
-    const estimate = await orderService.shippingEstimate();
+    const { zipcode } = req.params;
+
+    const estimate = await orderService.shippingEstimate(zipcode);
     return res.status(200).json(estimate);
   } catch (error) {
     return res.status(500).json({ message: 'Erro ao buscar produtos', error });

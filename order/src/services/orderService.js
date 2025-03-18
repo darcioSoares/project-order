@@ -12,40 +12,48 @@ const getProducts = async () => {
   }
 };
 
-const shippingEstimate = async () => {
+const shippingEstimate = async (zipCode) => {
+
+  //cep 01153 000 ---- CT em são Paulo (origem)
+  const origem = {
+    latitude: -23.53134247702593,
+    longitude: -46.652559956179324
+  };
   try {
-    // const { cepDestino } = req.query;
-    
-    // if (!cepDestino) {
-    //   return res.status(400).json({ error: "CEP de destino é obrigatório" });
-    // }
+    const response = await axios.get(`https://brasilapi.com.br/api/cep/v2/${zipCode}`);
 
-    let cepDestino ='13484-015'
-    console.log("Calculando frete para o CEP:", cepDestino);
-    
+    if (!response.data.location) {
+      throw new Error("Não foi possível obter coordenadas do CEP");
+    }
 
-    // Nova API de consulta de CEP (BrasilAPI)
-    const response = await axios.get(`https://brasilapi.com.br/api/cep/v2/${cepDestino}`);
-
-    // Simulação de valores (substitua por API real de frete)
-    const shippingEstimate = {
-      cepDestino,
-      cidade: response.data.city,
-      estado: response.data.state,
-      valorFrete: 19.90,  // Exemplo fixo
-      prazoEntrega: "4 dias úteis",
-      transportadora: "Transportadora X",
+    const destino = {
+      latitude: parseFloat(response.data.location.coordinates.latitude),
+      longitude: parseFloat(response.data.location.coordinates.longitude)
     };
 
-    // aqui e service não dever retorna res arrumar 
-    ////////////////////
+    const distancia = calculateDistance(origem.latitude, origem.longitude, destino.latitude, destino.longitude);
+    const valorFrete = 5 + distancia; // 1 por km
 
-    return shippingEstimate;
+    const prazoEntrega = Math.ceil(distancia / 10);
+
+    console.log("resultado Distância: ", distancia);
+
+    return {
+      cep:   zipCode,
+      cidade: response.data.city,
+      estado: response.data.state,
+      distanciaKm: distancia.toFixed(2), 
+      valorFrete: valorFrete.toFixed(2), 
+      prazoEntrega: `${prazoEntrega} dias`,
+      descricao: "A cada 10km adciona 1 dia no prazo de entrega, valor do frete R$5 + R$1 por km",
+      transportadora: "Transportadora X"
+    };
+
   } catch (error) {
-    console.error("Erro ao calcular frete:", error.message);
-    return { error: "Falha ao obter estimativa de frete" };
+    console.error("Erro ao calcular o frete:", error.message);
+    return { error: "Falha ao obter dados do CEP" };
   }
-};
+}
 
 const makeOrder = async (product, amount) => {
   try {
@@ -58,12 +66,28 @@ const makeOrder = async (product, amount) => {
     console.log("Enviando pedido para a fila:", data);
     await rabbitmqService.sendProductToQueue(data);
     
-    return { success: true, message: "Pedido enviado para a fila com sucesso!" };
+    return { success: true, message: "Pedido enviado para a fila com sucesso! Recebera um email com a confirmação do Pedidos" };
 
   } catch (error) {
     console.error("Erro ao processar pedido:", error.message);
     return { success: false, message: "Erro ao processar pedido." };
   }
+};
+
+const calculateDistance = (lat1, lon1, lat2, lon2) => {
+  const R = 6371;
+  const toRad = (value) => (value * Math.PI) / 180;
+
+  const dLat = toRad(lat2 - lat1);
+  const dLon = toRad(lon2 - lon1);
+
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; 
 };
 
 module.exports = {

@@ -14,7 +14,7 @@ export const sendProductToQueue = async (product) => {
     const message = JSON.stringify(product);
     channel.sendToQueue(QUEUE_NAME, Buffer.from(message), { persistent: true });
 
-    console.log("📩 Produto enviado para a fila:", product);
+    console.log("🚀🚀🚀🚀 Produto enviado para a fila: 🌏🌏🌏🌏", product);
 
     setTimeout(() => {
       channel.close();
