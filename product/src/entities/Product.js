@@ -6,8 +6,8 @@ module.exports = new EntitySchema({
   columns: {
     id: { primary: true, type: 'int', generated: true },
     name: { type: 'varchar', nullable: false },
-    category: { type: 'varchar', nullable: false },
-    price: { type: 'decimal', nullable: false },
+    category: { type: 'varchar', nullable: true },
+    price: { type: 'decimal', nullable: true },
     stock: { type: 'int', nullable: false },
     created_at: { type: 'timestamp', createDate: true },
     updated_at: { type: 'timestamp', updateDate: true },

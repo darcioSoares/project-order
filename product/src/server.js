@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const prodRouter = require("./routes/productRoutes");
-const consumeMessages = require("./services/rabbitmqConsumerService"); // Importando corretamente
+const consumeMessages = require("./services/rabbitmqConsumerService");
 
 
 consumeMessages(); 
