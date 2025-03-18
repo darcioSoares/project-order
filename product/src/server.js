@@ -1,8 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const prodRouter = require("./routes/productRoutes");
 const consumeMessages = require("./services/rabbitmqConsumerService");
-
 
 consumeMessages(); 
 

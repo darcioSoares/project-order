@@ -1,3 +1,5 @@
+# PROJETO HUBII API
+
 # Organização da Estrutura
 --------------------------------------------------------------------------------
 - A estrutura MVC (Model-View-Controller) foi escolhida para organizar o projeto de forma clara e escalável. No entanto, para manter a separação de responsabilidades e facilitar a manutenção do código, foi adicionado um nível extra de Services.
@@ -96,7 +98,7 @@ usando esse comando docker logs -f app_backend, ira aparecer os jobs. Esta simul
 
 ## Dentro do README de cada api, tem uma documentação da api e uma introdução de sua estrutura 
 
-1. Clone o repositório:
+#1. Clone o repositório:
 
 git clone [darcioSoares/project-order](https://github.com/darcioSoares/project-order)
 cd project-order
@@ -111,6 +113,23 @@ Dentro da pasta do app, use o comando:
 - docker compose down (derrubar os containers)
 
 Este comando irá subir os containers necessários para a aplicação.
+
+### 3. Rodar npm install e gerando migrations
+ API Product
+
+- Entrar em no terminal de product
+- docker exec -it api bash 
+- npm install 
+- npm run typeorm migration:run -- -d ./src/database/data-source.js
+
+
+- Entrar em no terminal de order
+- docker exec -it api-order bash 
+- npm install 
+
+
+- (OBSERVAÇÃO - DEIXAR O LOGS DO order ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
+- docker logs api-order -f (vai deixar o log aberto)
 
 ## Comandos para aplicação
 ### Para entrar no bash da app e rodar os teste

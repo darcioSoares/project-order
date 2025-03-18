@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const orderRouter = require("./routes/orderRouters");
 
@@ -13,4 +12,4 @@ app.use("/orders", orderRouter);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
-  });
+});

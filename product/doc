@@ -1,19 +1,5 @@
-docker exec -it minha_api bash
-
-docker logs -f minha_api
-
-
-docker exec -it minha_api sh
-tail -f /app/logs/app.log  
-
-docker exec minha_api npm run typeorm migration:run
-
-api correios
-https://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo
-
 docker compose down
 docker compose up -d --build
-
 
 
 Migrations
@@ -24,5 +10,3 @@ npm run typeorm migration:show -- -d ./src/database/data-source.ts
 
 chmod -R 777 /app/src/database/migrations
 
-
-microsserviço CRUD de produtos com controle de estoque simples
