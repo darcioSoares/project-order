@@ -80,6 +80,14 @@ exemplo: localhost:3000/products/10
 	"stock": 25
 }
 ```
+### Delete produto, 
+**DELETE /products/id
+```http
+DELETE /employees HTTP/1.1
+Host: localhost:3000
+Content-Type: application/json
+exemplo: localhost:3000/products/4
+```
 
 ### Listar todos os produtos, 
 **GET /products
@@ -90,13 +98,13 @@ Content-Type: application/json
 exemplo: localhost:3000/products
 ```
 
-### Delete produto, 
-**DELETE /products/id
+### Somar estoque por Produto, 
+**GET /products/totals/Produto
 ```http
-DELETE /employees HTTP/1.1
+GET /employees HTTP/1.1
 Host: localhost:3000
 Content-Type: application/json
-exemplo: localhost:3000/products/4
+exemplo: localhost:3000/products/totals/Monitor
 ```
 
 ### Tras uma lista de todos os produtos em totais já somados.

@@ -12,6 +12,11 @@ const getProducts = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!id || isNaN(Number(id)) || Number(id) <= 0) {
+      return res.status(400).json({ message: 'ID inválido' });
+    }
+
     const product = await productService.getProductById(id);
 
     if (!product) {
@@ -27,6 +32,11 @@ const getProductById = async (req, res) => {
 const createProduct = async (req, res) => {
   try {
     const { name,category, price, stock } = req.body;
+
+    if(!name || !category || !price || !stock){
+      return res.status(400).json({ message: 'Dados inválidos' });
+    }
+
     const newProduct = await productService.createProduct({ name, category, price, stock });
     
     return res.status(201).json(newProduct);
@@ -38,6 +48,11 @@ const createProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!id || isNaN(Number(id)) || Number(id) <= 0) {
+      return res.status(400).json({ message: 'ID inválido' });
+    }
+
     const updatedProduct = await productService.updateProduct(id, req.body);
 
     if (!updatedProduct) {
@@ -53,6 +68,11 @@ const updateProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
+
+    if (!id || isNaN(Number(id)) || Number(id) <= 0) {
+      return res.status(400).json({ message: 'ID inválido' });
+    }
+
     const deleted = await productService.deleteProduct(id);
 
     if (!deleted) {
@@ -68,6 +88,11 @@ const deleteProduct = async (req, res) => {
 const totalsProducts = async (req, res) => {
   try {
     const { name } = req.params;
+
+    if (!name) {
+      return res.status(400).json({ message: 'Produto inválido' });
+    }
+
     const result = await productService.totailProduct(name);
 
     return res.status(200).json(result);
