@@ -1,3 +1,4 @@
+require('dotenv').config();
 const amqplib = require('amqplib');
 const productService = require('./productService');
 

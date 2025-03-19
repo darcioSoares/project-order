@@ -10,6 +10,6 @@ RUN npm install -g nodemon
 # Copia o restante do código
 COPY . .
 
-EXPOSE 3003
+EXPOSE 3000
 
 CMD ["npm", "run", "dev"]

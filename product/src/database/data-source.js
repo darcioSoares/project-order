@@ -9,8 +9,9 @@ const AppDataSource = new DataSource({
   password: "password",
   database: "mydb",
   synchronize: false,
-  logging: false,
+  logging: true,
   entities: [Product],
+  migrations: ['./src/database/migrations/*.js'],
 });
 
 const initializeDatabase = async () => {

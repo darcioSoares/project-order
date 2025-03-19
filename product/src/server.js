@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const prodRouter = require("./routes/productRoutes");
 const consumeMessages = require("./services/rabbitmqConsumerService");
@@ -7,7 +8,7 @@ consumeMessages();
 const { initializeDatabase } = require("./database/data-source");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 
 app.use(express.json());

@@ -5,8 +5,8 @@ module.exports = class CreateProductTable1742171923483 {
         CREATE TABLE "products" (
           "id" SERIAL NOT NULL, 
           "name" VARCHAR NOT NULL, 
-          "category" VARCHAR NOT NULL, 
-          "price" DOUBLE PRECISION NOT NULL, 
+          "category" VARCHAR, 
+          "price" DOUBLE PRECISION, 
           "stock" INT NOT NULL, 
           "created_at" TIMESTAMP NOT NULL DEFAULT now(), 
           "updated_at" TIMESTAMP NOT NULL DEFAULT now(),
