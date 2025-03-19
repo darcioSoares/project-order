@@ -35,7 +35,6 @@ O projeto consiste em duas APIs que trabalham em conjunto para gerenciar produto
 - 🔗 Integração entre APIs:
 A API de Produtos e a API de Pedidos trabalham juntas para permitir que os usuários consultem os produtos disponíveis, verifiquem as condições de entrega e realizem pedidos com base nos valores e prazos calculados. 🚀
 
-
 ## Como Funciona a Integração?
 - 1️⃣ Pedido Criado 🛒 → Quando um cliente efetua um pedido, a API de Pedidos envia uma mensagem para a fila do RabbitMQ contendo as informações do pedido.
 - 2️⃣ Processamento na Fila 📩 → A mensagem é armazenada na fila até que a API de Produtos a consuma.
@@ -92,6 +91,7 @@ Este comando irá subir os containers necessários para a aplicação.
 - npm install 
 - npm run typeorm migration:run -- -d ./src/database/data-source.js
 - npm test
+- exit
 
 #### 3. Rodar - npm install e test
 
@@ -99,10 +99,11 @@ Este comando irá subir os containers necessários para a aplicação.
 - docker exec -it api-order bash 
 - npm install 
 - npm test
+- exit
 
 --------------------------------------------------------------------------------
-- (OBSERVAÇÃO - DEIXAR O LOGS DO order ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
-- docker logs api-order -f (vai deixar o log aberto)
+- (OBSERVAÇÃO - DEIXAR O LOGS DO Product ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
+- docker logs api -f 
 --------------------------------------------------------------------------------
 
 ## Comandos para aplicação
@@ -111,7 +112,3 @@ Este comando irá subir os containers necessários para a aplicação.
 - docker exec -it api bash
 - docker exec -it api-order bash
 - npm test
-
-### Verificar logs do backend, para ver os jobs sendo execultados
-- docker logs -f api ou api-order (logs backend)
-- docker compose restart backend (restart container)
