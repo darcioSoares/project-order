@@ -85,7 +85,6 @@ Este comando irá subir os containers necessários para a aplicação.
 
 #### 3. API Product - npm install, test e gerar migrations
  
-- Entrar em no terminal de product
 - docker exec -it api bash 
 - npm install 
 - npm run typeorm migration:run -- -d ./src/database/data-source.js
@@ -94,7 +93,6 @@ Este comando irá subir os containers necessários para a aplicação.
 
 #### 4. API Order Rodar - npm install e test
 
-- Entrar em no terminal de order
 - docker exec -it api-order bash 
 - npm install 
 - npm test
