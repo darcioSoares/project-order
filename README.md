@@ -70,14 +70,14 @@ A utilização do RabbitMQ aproxima o projeto de um cenário real de microservi�
 ## 1. Clone o repositório:
 
 git clone [https://github.com/darcioSoares/project-order](https://github.com/darcioSoares/project-order)
-cd project-order
+- cd project-order
 
 
 ## 2. Suba os containers com Docker: (Executar dentro da Raiz do projeto)
 
-- Dentro da pasta do app, use o comando:
+- Dentro da pasta do project-order, use o comando:
 
-- docker compose build  ou docker compose build '--no-cache' (criar as imagens)
+- docker compose build  ou docker compose build '--no-cache' 
 - docker compose up -d (subir os containers)
 - docker compose down (derrubar os containers)
 
@@ -104,6 +104,7 @@ Este comando irá subir os containers necessários para a aplicação.
 --------------------------------------------------------------------------------
 - (OBSERVAÇÃO - DEIXAR O LOGS DO Product ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
 - docker logs api -f 
+- No caso de erro nos container restart  ( docker compose restart api ou api-order )
 --------------------------------------------------------------------------------
 
 ## Comandos para aplicação
