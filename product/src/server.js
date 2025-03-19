@@ -1,9 +1,12 @@
 require('dotenv').config();
 const express = require("express");
 const prodRouter = require("./routes/productRoutes");
-const consumeMessages = require("./services/rabbitmqConsumerService");
 
-consumeMessages(); 
+setTimeout(() => {
+  console.log("Iniciando o consumidor de mensagens...");
+  const consumeMessages = require("./services/rabbitmqConsumerService");
+  consumeMessages();
+}, 10000); 
 
 const { initializeDatabase } = require("./database/data-source");
 
@@ -17,16 +20,10 @@ app.get("/", (_, res) => res.send("API Rodando - Produto"));
 
 app.use("/products", prodRouter);
 
+setTimeout(async ()  => {
+  await initializeDatabase();
+}, 5000); 
 
-initializeDatabase()
-  .then(() => {
-    console.log("Banco de dados inicializado com sucesso!");
-  
-    app.listen(PORT, () => {
-      console.log(`Servidor rodando na porta ${PORT}`);
-    });
-  })
-  .catch((error) => {
-    console.error("Erro na inicialização do servidor:", error);
-    process.exit(1); 
-  });
+app.listen(PORT, async ()  => {  
+  console.log(`Servidor rodando na porta ${PORT}`);
+});

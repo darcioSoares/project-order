@@ -11,6 +11,9 @@ services:
       - NODE_ENV=development
     depends_on:
       - db
+      - rabbitmq
+    networks:
+      - app_app_network  
 
   api-order:
     build: ./order
@@ -22,7 +25,11 @@ services:
     command: ["npm", "run", "dev"]
     environment:
       - NODE_ENV=development
-   
+    depends_on:
+      - rabbitmq
+    networks:
+      - app_app_network  
+
   db:
     image: postgres:14
     container_name: app-db
@@ -35,7 +42,15 @@ services:
       - app_pgdata:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-
+    networks:
+      - app_app_network 
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "user"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+      timeout: 5s   
+      
   rabbitmq:
     image: rabbitmq:management
     container_name: app-rabbitmq
@@ -48,7 +63,19 @@ services:
       - "15672:15672"  
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      retries: 5
+      start_period: 5s
+      timeout: 5s 
+    networks:
+      - app_app_network 
 
 volumes:
   app_pgdata:
   rabbitmq_data:
+
+networks:
+  app_app_network:
+    driver: bridge
