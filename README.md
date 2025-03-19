@@ -102,7 +102,8 @@ Este comando irá subir os containers necessários para a aplicação.
 
 #### Restart apis
 - docker compose restart api api-order 
--(Para evitar erro de conexão do rabbitmq)
+- (Para evitar erro de conexão do rabbitmq)
+
 --------------------------------------------------------------------------------
 - (OBSERVAÇÃO - DEIXAR O LOGS DO Product ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
 - docker logs api -f 
