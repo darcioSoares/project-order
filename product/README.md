@@ -39,7 +39,9 @@ Esta é a estrutura do Projeto.
 - docker exec -it api bash (entrar no bash) 
 --------------------------------------------------------------------------------
 
-# API Documentation
+- `No caso de erro nos container restart  ( docker compose restart api ou api-order )`
+
+# Documentação API
 
 ## Products Endpoints
 

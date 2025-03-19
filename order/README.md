@@ -30,18 +30,20 @@ Esta é a estrutura do Projeto.
 # Observação
 - Api pedidos, não a interação com DB, consumimos api produtos, para listar produtos por isso não há repositories nem entities.
 
-- docker exec -it api-order bash (entrar no bash) Para consegui visualizar o consumo da fila e as msg
+- docker exec -it api-order bash (entrar no bash)
 um passo alem, seria enviar por email, imformaçoes sobre o produto para o cliente. Mas só estou logando no temrinal.
 --------------------------------------------------------------------------------
 
-# API Documentation
+- `No caso de erro nos container restart  ( docker compose restart api ou api-order )`
+
+# Documentação API
 
 ## Orders Endpoints
 
 ### Consumindo a api de produtos, listar todos os produtos, 
 **GET /orders/products**
 ```http
-POST /employees HTTP/1.1
+GET /employees HTTP/1.1
 Host: localhost:3005
 Content-Type: application/json
 exemplo: localhost:3005/orders/products
@@ -52,11 +54,10 @@ exemplo: localhost:3005/orders/products
 ```http
 GET /employees HTTP/1.1
 Host: localhost:3005
-exemplo: localhost:3005/orders/products/13484-015
+exemplo: localhost:3005/orders/estimate/13484-015
 ```
 
-## Journeys Endpoints
-
+- (Deixar os logs aberto para ver interação com rabbitmq docker logs api -f e api-order)
 ### Efetuar pedido
 **POST /orders/order
 ```http
@@ -69,7 +70,7 @@ exemplo: localhost:3005/orders/order
 ```json
 {
   "product" : "Pc", - nome do produto (case sensitive)
-  "amount" : 2      - quantidade do pedido
-}
+  "amount" : 2      - quantidade do pedido  
+} 
 ```
 

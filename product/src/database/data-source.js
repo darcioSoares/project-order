@@ -9,7 +9,7 @@ const AppDataSource = new DataSource({
   password: "password",
   database: "mydb",
   synchronize: false,
-  logging: true,
+  logging: false,
   entities: [Product],
   migrations: ['./src/database/migrations/*.js'],
 });

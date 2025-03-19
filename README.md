@@ -83,9 +83,8 @@ git clone [https://github.com/darcioSoares/project-order](https://github.com/dar
 
 Este comando irá subir os containers necessários para a aplicação.
 
-### 3. Rodar - npm install, test e gerando migrations Project
- API Product
-
+#### 3. API Product - npm install, test e gerar migrations
+ 
 - Entrar em no terminal de product
 - docker exec -it api bash 
 - npm install 
@@ -93,7 +92,7 @@ Este comando irá subir os containers necessários para a aplicação.
 - npm test
 - exit
 
-#### 3. Rodar - npm install e test
+#### 4. API Order Rodar - npm install e test
 
 - Entrar em no terminal de order
 - docker exec -it api-order bash 
@@ -101,10 +100,12 @@ Este comando irá subir os containers necessários para a aplicação.
 - npm test
 - exit
 
+#### Restart apis
+- docker compose restart api api-order 
+-(Para evitar erro de conexão do rabbitmq)
 --------------------------------------------------------------------------------
 - (OBSERVAÇÃO - DEIXAR O LOGS DO Product ABERTO, PARA PODER VER A INTERAÇÃO COM RABBITMQ AO FAZER UM PEDIDO)
 - docker logs api -f 
-- No caso de erro nos container restart  ( docker compose restart api ou api-order )
 --------------------------------------------------------------------------------
 
 ## Comandos para aplicação

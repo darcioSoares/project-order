@@ -68,7 +68,7 @@ const shippingEstimate = async (zipCode) => {
       valorFrete: valorFrete.toFixed(2), 
       prazoEntrega: `${prazoEntrega} dias`,
       centroDistribuicao: "São Paulo - SP",
-      descricao: "A cada 10km adciona 1 dia no prazo de entrega, valor do frete R$5 + R$1 por km",
+      descricao: "A cada 10km adiciona 1 dia no prazo de entrega, valor do frete R$ 5 + R$ 1 por km",
       transportadora: "Transportadora X"
     };
 
